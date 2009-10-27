@@ -127,6 +127,16 @@ function performTournyFishing() {
 	return 0;
 }
 
+function updateElement(id, attributes) {
+	var elt = document.getElementById(id);
+	if (attributes != null) {
+		for (var i in attributes) {
+			elt.setAttribute(i, attributes[i]);
+		}
+	}
+}
+
+//taken from mafia wars auto player
 function makeElement(type, appendto, attributes, checked, chkdefault) {
 	var element = document.createElement(type);
 	if (attributes != null) {
@@ -153,6 +163,7 @@ function act_tournyToggle() {
 		GM_setValue('tournyFish', 'Off');
 		document.getElementById('lbl_tournystate').innerHTML = 'Off';
 	}
+	act_updateLabelState();
 }
 function act_regularToggle() {
 	if (GM_getValue('regularFish', 'Off') == 'Off') {
@@ -161,6 +172,20 @@ function act_regularToggle() {
 	} else {
 		GM_setValue('regularFish', 'Off');
 		document.getElementById('lbl_regularstate').innerHTML = 'Off';
+	}
+	act_updateLabelState();
+}
+
+function act_updateLabelState() {
+	if (GM_getValue('regularFish', 'Off') == 'On') {
+		updateElement('lbl_regularstate', {'class':'bold green tiny'});
+	} else {
+		updateElement('lbl_regularstate', {'class':'bold red tiny'});
+	}
+	if (GM_getValue('tournyFish', 'Off') == 'On') {
+		updateElement('lbl_tournystate', {'class':'bold green tiny'});
+	} else {
+		updateElement('lbl_tournystate', {'class':'bold red tiny'});
 	}
 }
 
@@ -172,16 +197,17 @@ function initUi() {
 	var displayElt = makeElement('div', mastheadElt, {'style':'float:left; text-align: left; font-size: 11px; font-weight: bold; color: #333'}).appendChild(document.createTextNode(fwapTitle));
 
 	mastheadElt.appendChild(document.createTextNode(' '));
-	var tournyButton = makeElement('span', mastheadElt, {'class':'sexy_button', 'style':'margin-left:10px;left: 10px; bottom: 10px;'});
+	var tournyButton = makeElement('span', mastheadElt, {'style':'cursor:pointer;margin-left:10px;left: 10px; bottom: 10px;'});
 	var tournyDiv = makeElement('span', tournyButton).appendChild(document.createTextNode('Tourny Auto-Fishing: '));
 	makeElement('span', tournyButton, {'id':'lbl_tournystate'}).appendChild(document.createTextNode(GM_getValue('tournyFish', 'Off')));
 	tournyButton.addEventListener('click', act_tournyToggle, false);
 
-	var regularButton = makeElement('span', mastheadElt, {'class':'sexy_button', 'style':'margin-left:20px;left: 10px; bottom: 10px;'});
+	var regularButton = makeElement('span', mastheadElt, {'style':'cursor:pointer;margin-left:20px;left: 10px; bottom: 10px;'});
 	var regularDiv = makeElement('span', regularButton).appendChild(document.createTextNode('Regular Auto-Fishing: '));
 	makeElement('span', regularButton, {'id':'lbl_regularstate'}).appendChild(document.createTextNode(GM_getValue('regularFish', 'Off')));
 	regularButton.addEventListener('click', act_regularToggle, false);
 
+	act_updateLabelState();
 }
 
 //GM_log(' auto fish : '+GM_getValue('regularFish'));
