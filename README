@@ -1,0 +1,22 @@
+Facebook Fish Wrangler Auto Player (FFWAP)
+========================================================================
+
+http://userscripts.org/scripts/show/60661
+
+
+Runs fishwrangler while you have an open tab. You can turn on and off 
+auto-fishing as well as auto-tournament fishing.
+
+Features:
+* Doesn't fish when you are out of chum.
+* Doesn't fish when you have a treasure chest.
+* Independently start/stop tournament and regular fishing.
+
+It started with this one line script: 
+http://userscripts.org/scripts/review/39300 Then that got me thinking 
+about changing the timing of the fishing, and seeing if there was 
+treasure on the screen. Nothing is more annoying than an auto-player 
+script that wastes the server's resources. This script will not fish 
+if you have treasure on the screen or if you are out of chum. This 
+should reduce the load on the FW server.
+
