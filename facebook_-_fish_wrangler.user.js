@@ -11,8 +11,8 @@
 //taken from mafia wars auto player
 var SCRIPT = {
 url: 'http://userscripts.org/',
-	 version: '0.0.2',
-	 build: '9',
+	 version: '0.0.3',
+	 build: '10',
 	 name: 'fishwrangler',
 	 appID: 'app8138090269',
 	 ajaxPage: '',
@@ -192,7 +192,7 @@ function act_updateLabelState() {
 
 
 function initUi() {
-	var fwapTitle = 'FWAP ' + SCRIPT.version + ' (Build ' + SCRIPT.build + ')';
+	var fwapTitle = 'FFWAP ' + SCRIPT.version + ' (Build ' + SCRIPT.build + ')';
 	var mastheadElt = document.getElementById(SCRIPT.appID + '_mainmenucontainer');
 	var displayElt = makeElement('div', mastheadElt, {'style':'float:left; text-align: left; font-size: 11px; font-weight: bold; color: #333'}).appendChild(document.createTextNode(fwapTitle));
 
